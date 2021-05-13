@@ -1,0 +1,36 @@
+//coding-classes
+#include<upstream.h>
+using namespace std;
+int main()
+{
+int n;
+cin>>n;
+int a[n];
+for(int i=0;i<n;i++)
+{
+cin>>a[i];
+}
+int pre[n+1]={0};
+int q;
+cin>>q;
+while(q--)
+{
+int l,r,x;
+cin>>l;
+cin>>r;
+cin>>x;
+pre[l]=pre[l]+x;
+pre[r+1]=pre[r+1]-x;
+}
+a[0]=pre[0];
+for(int i=1;i<n+1;i++)
+{
+pre[i]=pre[i-1]+pre[i];
+a[i]+=pre[i];
+}
+for(int i=0;i<n;i++)
+{
+cout<<a[i];
+}
+return 0;
+}
