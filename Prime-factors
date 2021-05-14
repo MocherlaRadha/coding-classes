@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+long long int N=1000001;
+long long int s[1000001];
+void gen_dsieve()
+{
+    s[0]=s[1]=1;
+    for(int i=2;i<=N;i++)s[i]=i;
+    for(int i=2;i*i<=N;i++)
+    {
+        if(s[i]==i)
+        {
+            for(int j=i*i;j<=N;j+=i)
+            {
+                if(s[j]==j)
+                {
+                    s[j]=i;
+                }
+            }
+        }
+    }
+    
+}
+
+int main() {
+	gendsieve();
+	int q;
+	cin>>q;
+	while(q--)
+	{
+	    int n;
+	    cin>>n;
+	    while(n!=1)
+	    {
+	        cout<<s[n]<<" ";
+	        n=n/s[n];
+	    }
+	}
+	return 0;
+}
