@@ -1,0 +1,14 @@
+#include<iostream.h>
+using namespace std;
+int main()
+{
+int n,a[10],i;
+cin>>i;
+for(i=0;i<n;i++)
+cin>>a[i];
+for(i=0;i<n-1;i++)
+{
+a[i]=a[i]|a[i+1];
+}
+return a;
+}
