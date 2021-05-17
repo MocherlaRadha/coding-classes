@@ -1,0 +1,21 @@
+#include<bits/stdc++.h>
+using namespace std;
+ int main()
+{
+ int n;
+cin >> n;
+ while(n--)
+ {
+set<char>st1;
+string s1;
+cin >> s1;
+for(char x:s1)
+{
+st1.insert(x);
+ }
+ long long int n1 = st1.size();
+long long int n2 = n1*(n1+1)/2;
+cout << n2<<"\n";
+}
+ return 0;
+}
