@@ -22,3 +22,10 @@ class Solution {
         return stack.isEmpty();
     }
 }
+int main()
+{
+String s;
+cin>>s;
+isValid(s);
+return 0;
+}
