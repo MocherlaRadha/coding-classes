@@ -1,0 +1,86 @@
+#include <iostream>
+#include <algorithm>
+#include <queue>
+#include <climits>
+using namespace std;
+#define M 4
+#define N 5
+ struct Point {
+    int x, y;
+};
+bool isValid(int i, int j) {
+    return (i >= 0 && i < M) && (j >= 0 && j < N);
+}
+int row[] = { -1, 0, 0, 1 };
+int col[] = { 0, -1, 1, 0 };
+ bool hasNegative(int mat[][N])
+{
+    for (int i = 0; i < M; i++)
+    {
+        for (int j = 0; j < N; j++)
+        {
+            if (mat[i][j] < 0) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+int convert(int mat[][N])
+{
+    queue<Point> Q;
+    for (int i = 0; i < M; i++)
+    {
+        for (int j = 0; j < N; j++)
+        {
+            if (mat[i][j] > 0) {
+                Q.push({i, j});
+            }
+        }
+    }
+  int passes = 0;
+   while (!Q.empty())
+    {
+      queue<Point> q;
+      swap(Q, q);
+     while (!q.empty())
+        {
+            int x = q.front().x;
+            int y = q.front().y;
+            q.pop();
+            for (int k = 0; k < 4; k++)
+            {
+               if (isValid(x + row[k], y + col[k]) &&
+                    mat[x + row[k]][y + col[k]] < 0)
+                {
+                  mat[x + row[k]][y + col[k]] = -mat[x + row[k]][y + col[k]];
+                  Q.push({x + row[k], y + col[k]});
+                }
+            }
+        }
+       passes++;
+    }
+   return hasNegative(mat) ? INT_MAX : (passes - 1);
+}
+ int main()
+{
+    int mat[][N] =
+    {
+        { -1, -9, 0, -1, 0 },
+        { -8, -3, -2, 9, -7 },
+        { 2, 0, 0, -6, 0 },
+        { 0, -7, -3, 5, -4 }
+    };
+ 
+    int pass = convert(mat);
+    if (pass != INT_MAX) {
+        cout << "The total number of passes required is " << pass;
+    }
+    else {
+        cout << "Invalid Input";
+    }
+ 
+    return 0;
+}
+
+
